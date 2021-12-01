@@ -1,39 +1,209 @@
-.App {
-  text-align: center;
+:root {
+  --text-color: hsl(0, 0%, 15%);
+  --primary-bg-color: hsl(0, 0%, 100%);
+  --secondary-bg-color: hsl(0, 0%, 95%);
+  --tertiary-bg-color: hsl(0, 0%, 85%);
+  --primary-accent-color: hsl(20, 100%, 50%);
+  --secondary-accent-color: hsl(20, 85%, 85%);
+  color: var(--text-color);
+  background-color: var(--secondary-bg-color);
+  font-size: 16px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* header */
+
+header {
+  background-color: var(--primary-bg-color);
+  box-shadow: 0 0.3rem 0.6rem var(--tertiary-bg-color);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
-}
-
-.App-header {
-  min-height: 100vh;
+header > a {
+  text-decoration: none;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+header h1 {
+  display: none;
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
+.img-container {
+  width: 2rem;
+  margin-left: 0.6rem;
+  margin-right: 0.6rem;
+}
+
+.img-container img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar > input {
+  background-color: var(--secondary-bg-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  width: 60%;
+  border-radius: 0.5rem;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.search-bar > button {
+  display: none;
+}
+
+/* main */
+
+main {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 1rem;
+}
+
+main > section {
+  background-color: var(--primary-bg-color);
+  box-shadow: -0.3rem 0.3rem 0.6rem var(--tertiary-bg-color);
+  border-radius: 1rem;
+  margin-left: 1rem;
+}
+
+main h2 {
+  margin-left: 2rem;
+}
+
+/* cards */
+
+
+
+/* navbar */
+
+nav {
+  background-color: var(--primary-bg-color);
+  box-shadow: -0.3rem 0.3rem 0.6rem var(--tertiary-bg-color);
+  border-radius: 1rem 0 0 1rem;
+}
+
+nav > ul {
+  list-style: none;
+  padding-left: 2rem;
+}
+
+.subreddit > a {
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.6rem;
+  margin-right: 1rem;
+}
+
+.subreddit img {
+  border-radius: 50%;
+}
+
+.subreddit p {
+  margin-left: 0.5rem;
+}
+
+.inactive {
+  color: var(--text-color);
+}
+
+.inactive:hover {
+  background-color: var(--secondary-bg-color);
+}
+
+.inactive img {
+  border: 0.15rem solid var(--text-color);
+}
+
+.active {
+  color: var(--primary-accent-color);
+  background-color: var(--secondary-accent-color);
+  border-left: 0.5rem solid var(--primary-accent-color);
+}
+
+.active img {
+  border: 0.15rem solid var(--primary-accent-color);
+}
+
+/* footer */
+
+footer {
+  text-align: right;
+}
+
+footer p {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+/* tablet */
+
+@media only screen and (min-width: 480px) {
+  header {
+    grid-template-columns: 1fr 1fr;
   }
-  50% {
-    transform: translateY(10px);
+
+  header h1 {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--primary-accent-color);
+    text-transform: uppercase;
   }
-  100% {
-    transform: translateY(0px);
+
+  header h1 > span {
+    font-style: italic;
+    font-weight: normal;
+    color: var(--text-color);
+    text-transform: capitalize;
   }
+}
+
+/* laptop */
+
+@media only screen and (min-width: 768px) {
+  header {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+
+  .search-bar > button {
+    display: block;
+    border: none;
+    background-color: var(--primary-bg-color);
+    opacity: 50%;
+    transition: opacity 0.3s, transform 0.2s;
+  }
+  
+  .search-bar > button:hover {
+    opacity: 100%;
+  }
+  
+  .search-bar > button:active {
+    transform: scale(0.75);
+  }
+}
+
+/* desktop */
+
+@media only screen and (min-width: 1024px) {
 }
