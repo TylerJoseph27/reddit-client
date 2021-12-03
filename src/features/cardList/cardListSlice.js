@@ -7,17 +7,17 @@ export const cardListSlice = createSlice({
     posts: []
   },
   reducers: {
-    addPost: (state, action) => {
-      state.posts.push(action.payload);
+    changePost: (state, action) => {
+      state.posts = action.payload;
     }
   }
 });
 
 // export selectors
-
+export const selectPosts = state => state.cardList.posts;
 
 // export action creators
-
+export const { changePost } = cardListSlice.actions;
 
 // export reducer
 export default cardListSlice.reducer;

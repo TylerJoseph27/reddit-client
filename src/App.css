@@ -1,11 +1,12 @@
 :root {
-  --text-color: hsl(0, 0%, 15%);
+  --primary-text-color: hsl(0, 0%, 15%);
+  --secondary-text-color: hsl(0, 0%, 45%);
   --primary-bg-color: hsl(0, 0%, 100%);
   --secondary-bg-color: hsl(0, 0%, 95%);
   --tertiary-bg-color: hsl(0, 0%, 85%);
   --primary-accent-color: hsl(20, 100%, 50%);
   --secondary-accent-color: hsl(20, 85%, 85%);
-  color: var(--text-color);
+  color: var(--primary-text-color);
   background-color: var(--secondary-bg-color);
   font-size: 16px;
 }
@@ -20,7 +21,7 @@ header {
   width: 100%;
   height: 4rem;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
 }
 
@@ -32,16 +33,27 @@ header > a {
 }
 
 header h1 {
-  display: none;
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--primary-accent-color);
+  text-transform: uppercase;
 }
 
-.img-container {
+header h1 > span {
+  font-style: italic;
+  font-weight: normal;
+  color: var(--primary-text-color);
+  text-transform: capitalize;
+}
+
+.icon-container {
   width: 2rem;
   margin-left: 0.6rem;
   margin-right: 0.6rem;
 }
 
-.img-container img {
+.icon-container img {
   width: 100%;
   height: auto;
   cursor: pointer;
@@ -57,7 +69,7 @@ header h1 {
   background-color: var(--secondary-bg-color);
   border: none;
   padding: 0.5rem 1rem;
-  width: 60%;
+  width: 80%;
   border-radius: 0.5rem;
 }
 
@@ -72,41 +84,106 @@ input[type="search"]::-webkit-search-cancel-button {
 /* main */
 
 main {
-  margin-top: 5rem;
+  margin: 5rem auto;
   display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 1rem;
+  grid-template-columns: 4fr 1fr;
 }
 
-main > section {
+/*main > section {
   background-color: var(--primary-bg-color);
   box-shadow: -0.3rem 0.3rem 0.6rem var(--tertiary-bg-color);
   border-radius: 1rem;
   margin-left: 1rem;
-}
-
-main h2 {
-  margin-left: 2rem;
-}
+}*/
 
 /* cards */
 
+.card-list {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 
+.subreddit {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card {
+  background-color: var(--primary-bg-color);
+  box-shadow: -0.3rem 0.3rem 0.6rem var(--tertiary-bg-color);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.card p {
+  margin: 0;
+}
+
+.card h2 {
+  margin: 0;
+}
+
+.intro {
+  color: var(--secondary-text-color);
+  font-size: .875rem;
+}
+
+.description {
+
+}
+
+.img-container {
+  width: 25rem;
+}
+
+.img-container img {
+  width: 100%;
+  height: auto;
+}
+
+.comments {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--primary-text-color);
+}
+
+.comments:hover {
+  background-color: var(--secondary-bg-color);
+}
+
+.comments p {
+  font-size: .875rem;
+  font-weight: bold;
+}
 
 /* navbar */
+
+.navbar {
+  margin-right: 1rem;
+}
 
 nav {
   background-color: var(--primary-bg-color);
   box-shadow: -0.3rem 0.3rem 0.6rem var(--tertiary-bg-color);
-  border-radius: 1rem 0 0 1rem;
+  border-radius: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+nav > h2 {
+  margin: 0 2rem;
 }
 
 nav > ul {
   list-style: none;
-  padding-left: 2rem;
+  padding: 0;
+  margin-left: 2rem;
 }
 
-.subreddit > a {
+.subreddit-link > a {
   font-weight: bold;
   text-decoration: none;
   display: flex;
@@ -115,16 +192,16 @@ nav > ul {
   margin-right: 1rem;
 }
 
-.subreddit img {
+.subreddit-link img {
   border-radius: 50%;
 }
 
-.subreddit p {
+.subreddit-link p {
   margin-left: 0.5rem;
 }
 
 .inactive {
-  color: var(--text-color);
+  color: var(--primary-text-color);
 }
 
 .inactive:hover {
@@ -132,7 +209,7 @@ nav > ul {
 }
 
 .inactive img {
-  border: 0.15rem solid var(--text-color);
+  border: 0.15rem solid var(--primary-text-color);
 }
 
 .active {
@@ -157,33 +234,17 @@ footer p {
 }
 
 /* tablet */
-
 @media only screen and (min-width: 480px) {
-  header {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  header h1 {
-    display: block;
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--primary-accent-color);
-    text-transform: uppercase;
-  }
-
-  header h1 > span {
-    font-style: italic;
-    font-weight: normal;
-    color: var(--text-color);
-    text-transform: capitalize;
-  }
 }
 
 /* laptop */
-
 @media only screen and (min-width: 768px) {
   header {
     grid-template-columns: 1fr 2fr 1fr;
+  }
+
+  .search-bar > input {
+    width: 60%;
   }
 
   .search-bar > button {
@@ -204,6 +265,5 @@ footer p {
 }
 
 /* desktop */
-
 @media only screen and (min-width: 1024px) {
 }

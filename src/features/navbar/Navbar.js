@@ -21,20 +21,22 @@ export default function Navbar() {
   }).catch(error => console.log(error)), [dispatch]);
 
   return (
-    <nav>
-      <h2>Subreddits</h2>
-      <ul>
-        {subreddits.map(subreddit => (
-          <li key={subreddit.id} className='subreddit' onClick={() => dispatch(changeActiveSubreddit(subreddit.url))}>
-            <NavLink to={subreddit.url} className={({ isActive }) => isActive ? 'active' : 'inactive'}>
-              <div className='img-container'>
-                <img src={subreddit.icon || logo} alt={`${subreddit.prefix} icon`} />
-              </div>
-              <p>{subreddit.name}</p>
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <section className='navbar'>
+      <nav>
+        <h2>Subreddits</h2>
+        <ul>
+          {subreddits.map(subreddit => (
+            <li key={subreddit.id} className='subreddit-link' onClick={() => dispatch(changeActiveSubreddit(subreddit.url))}>
+              <NavLink to={subreddit.url} className={({ isActive }) => isActive ? 'active' : 'inactive'}>
+                <div className='icon-container'>
+                  <img src={subreddit.icon || logo} alt={`${subreddit.prefix} icon`} />
+                </div>
+                <p>{subreddit.name}</p>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </section>
   );
 }

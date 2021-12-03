@@ -12,7 +12,7 @@ function App() {
     <>
       <header>
         <Link to='/' >
-          <div className='img-container'>
+          <div className='icon-container'>
             <img src={logo} alt='reddit logo' />
           </div>
           <h1>Reddit<span>Minimal</span></h1>
