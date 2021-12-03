@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// create navbar slice of state
+// create cardList slice of state
 export const cardListSlice = createSlice({
   name: 'cardList',
   initialState: {
@@ -13,10 +13,10 @@ export const cardListSlice = createSlice({
   }
 });
 
-// export selectors
+// export selector
 export const selectPosts = state => state.cardList.posts;
 
-// export action creators
+// export action creator
 export const { changePost } = cardListSlice.actions;
 
 // export reducer

@@ -89,12 +89,16 @@ main {
   grid-template-columns: 4fr 1fr;
 }
 
-/*main > section {
+.about {
   background-color: var(--primary-bg-color);
   box-shadow: -0.3rem 0.3rem 0.6rem var(--tertiary-bg-color);
   border-radius: 1rem;
-  margin-left: 1rem;
-}*/
+  margin: 0 1rem;
+}
+
+.about > h2, .loading > h2 {
+  margin: 1rem 2rem;
+}
 
 /* cards */
 
@@ -114,28 +118,26 @@ main {
   box-shadow: -0.3rem 0.3rem 0.6rem var(--tertiary-bg-color);
   border-radius: 1rem;
   margin-bottom: 1rem;
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 
-.card p {
+.card > .intro {
   margin: 0;
-}
-
-.card h2 {
-  margin: 0;
-}
-
-.intro {
   color: var(--secondary-text-color);
   font-size: .875rem;
 }
 
-.description {
+.card > .title {
+  margin-top: 0.5rem;
+}
 
+.card > a {
+  margin-top: 1rem;
 }
 
 .img-container {
   width: 25rem;
+  margin: 0 auto;
 }
 
 .img-container img {
@@ -143,18 +145,18 @@ main {
   height: auto;
 }
 
-.comments {
+.card > .comments {
   display: flex;
   align-items: center;
   text-decoration: none;
   color: var(--primary-text-color);
 }
 
-.comments:hover {
+.card > .comments:hover {
   background-color: var(--secondary-bg-color);
 }
 
-.comments p {
+.card > .comments p {
   font-size: .875rem;
   font-weight: bold;
 }
@@ -233,11 +235,13 @@ footer p {
   margin-left: 1rem;
 }
 
+/* media queries default is mobile */
+
 /* tablet */
 @media only screen and (min-width: 480px) {
 }
 
-/* laptop */
+/* small screens */
 @media only screen and (min-width: 768px) {
   header {
     grid-template-columns: 1fr 2fr 1fr;
@@ -264,6 +268,16 @@ footer p {
   }
 }
 
-/* desktop */
-@media only screen and (min-width: 1024px) {
+/* large screens */
+@media only screen and (min-width: 1200px) {
+  main {
+    width: 80%;
+  }
+}
+
+/* extra large screens */
+@media only screen and (min-width: 1920px) {
+  main {
+    width: 60%;
+  }
 }

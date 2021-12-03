@@ -2,21 +2,23 @@ import React, { useEffect } from 'react';
 import Card from '../card/Card.js';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { selectActiveSubreddit } from '../navbar/navbarSlice.js';
 import { selectPosts, changePost } from './cardListSlice.js';
+import { selectActiveSubreddit } from '../navbar/navbarSlice.js';
+import { selectSearchTerm } from '../searchBar/searchBarSlice.js';
 import { getSubredditPosts } from '../../app/reddit.js';
 import { getPostDate } from '../../app/utils.js';
 
 export default function CardList() {
-  const activeSubreddit = useSelector(selectActiveSubreddit);
   const posts = useSelector(selectPosts);
+  const activeSubreddit = useSelector(selectActiveSubreddit);
+  const searchTerm = useSelector(selectSearchTerm);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   let isLoading = true;
+  const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
   useEffect(() => getSubredditPosts(activeSubreddit).then(data => {
-    console.log(data);
-
     // array to store posts
     const newPosts = [];
 
@@ -43,6 +45,7 @@ export default function CardList() {
     }
   }).catch(error => console.log(error)), [activeSubreddit, dispatch, navigate]);
 
+  // check for posts array
   if (posts.length > 0) {
     // done loading
     isLoading = false;
@@ -52,7 +55,7 @@ export default function CardList() {
     return (
       <section className='card-list'>
         <ul className='subreddit'>
-          {posts.map(post => (
+          {filteredPosts.map(post => (
             <li key={post.id}>
               <Card 
                 author={post.author}
@@ -71,7 +74,7 @@ export default function CardList() {
     );
   } else {
     return (
-      <section>
+      <section className='loading'>
         <h2>Loading...</h2>
       </section>
     );

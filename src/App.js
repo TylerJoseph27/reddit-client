@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { changeActiveSubreddit } from './features/navbar/navbarSlice.js';
 import SearchBar from './features/searchBar/SearchBar.js';
 import HomePage from './features/homePage/HomePage.js';
 import CardList from './features/cardList/CardList.js';
@@ -8,10 +10,12 @@ import Navbar from './features/navbar/Navbar.js';
 import logo from './app/logo.png';
 
 function App() {
+  const dispatch = useDispatch();
+  
   return (
     <>
       <header>
-        <Link to='/' >
+        <Link to='/' onClick={() => dispatch(changeActiveSubreddit(''))}>
           <div className='icon-container'>
             <img src={logo} alt='reddit logo' />
           </div>

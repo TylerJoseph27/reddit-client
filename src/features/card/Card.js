@@ -34,11 +34,13 @@ export default function Card(props) {
   return (
     <article className='card'>
       <p className='intro'>{`Posted by u/${props.author} ${props.time}`}</p>
-      <h2>{props.title}</h2>
-      {props.type === 'link' || props.type === 'hosted:video' || typeof props.type === 'object' ? <a href={props.preview} rel='noreferrer' target='_blank'>{props.preview}</a> : null}
-      {props.type === 'self' || (props.type === undefined && props.description.length > 0) ? <ReactMarkdown className='description'>{props.description}</ReactMarkdown> : null}
-      {props.type === 'image' ? <div className='img-container'><img src={props.preview} alt='post preview' /></div> : null}
-      {props.type === 'rich:video' && videoURL.length > 0 ? <iframe src={videoURL} title={props.title} width='640' height='360'></iframe> : null}
+      <h2 className='title'>{props.title}</h2>
+      <div className='content'>
+        {props.type === 'link' || props.type === 'hosted:video' || typeof props.type === 'object' ? <a href={props.preview} rel='noreferrer' target='_blank'>{props.preview}</a> : null}
+        {props.type === 'self' || (props.type === undefined && props.description.length > 0) ? <ReactMarkdown className='description'>{props.description}</ReactMarkdown> : null}
+        {props.type === 'image' ? <div className='img-container'><img src={props.preview} alt='post preview' /></div> : null}
+        {props.type === 'rich:video' && videoURL.length > 0 ? <iframe src={videoURL} title={props.title} width='640' height='360' allowFullScreen className='video'></iframe> : null}
+      </div>
       <Link to={props.url} className='comments'>
         <div className='icon-container'><img src={comments} alt='comments icon' /></div>
         <p>{`Comments ${props.comments}`}</p>
