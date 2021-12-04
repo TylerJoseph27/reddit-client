@@ -6,12 +6,13 @@ import { changeActiveSubreddit } from './features/navbar/navbarSlice.js';
 import SearchBar from './features/searchBar/SearchBar.js';
 import HomePage from './features/homePage/HomePage.js';
 import CardList from './features/cardList/CardList.js';
+import Post from './features/post/Post';
 import Navbar from './features/navbar/Navbar.js';
 import logo from './app/logo.png';
 
 function App() {
   const dispatch = useDispatch();
-  
+
   return (
     <>
       <header>
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/r/:subreddit' element={<CardList />} />
+          <Route path='/r/:subreddit/comments/:id/:comment' element={<Post />} />
         </Routes>
         <Navbar />
       </main>

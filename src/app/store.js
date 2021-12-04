@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import navbarReducer from '../features/navbar/navbarSlice.js';
-import cardListReducer from '../features/cardList/cardListSlice.js';
 import searchBarReducer from '../features/searchBar/searchBarSlice.js';
+import cardListReducer from '../features/cardList/cardListSlice.js';
+import postReducer from '../features/post/postSlice.js';
+import navbarReducer from '../features/navbar/navbarSlice.js';
 
 export const store = configureStore({
   reducer: {
-    navbar: navbarReducer,
+    searchBar: searchBarReducer,
     cardList: cardListReducer,
-    searchBar: searchBarReducer
+    post: postReducer,
+    navbar: navbarReducer
   },
 });

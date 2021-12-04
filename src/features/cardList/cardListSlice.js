@@ -4,20 +4,25 @@ import { createSlice } from '@reduxjs/toolkit';
 export const cardListSlice = createSlice({
   name: 'cardList',
   initialState: {
-    posts: []
+    posts: [],
+    activePost: ''
   },
   reducers: {
-    changePost: (state, action) => {
+    changePosts: (state, action) => {
       state.posts = action.payload;
+    },
+    changeActivePost: (state, action) => {
+      state.activePost = action.payload;
     }
   }
 });
 
-// export selector
+// export selectors
 export const selectPosts = state => state.cardList.posts;
+export const selectActivePost = state => state.cardList.activePost;
 
-// export action creator
-export const { changePost } = cardListSlice.actions;
+// export action creators
+export const { changePosts, changeActivePost } = cardListSlice.actions;
 
 // export reducer
 export default cardListSlice.reducer;

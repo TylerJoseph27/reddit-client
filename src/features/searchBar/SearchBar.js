@@ -5,9 +5,9 @@ import { changeSearchTerm } from './searchBarSlice.js';
 import search from '../../app/search.png';
 
 export default function SearchBar() {
+  const [searchTerm, setSearchTerm] = useState('');
   const activeSubreddit = useSelector(selectActiveSubreddit);
   const dispatch = useDispatch();
-  const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <form className='search-bar' onSubmit={event => {

@@ -56,7 +56,6 @@ header h1 > span {
 .icon-container img {
   width: 100%;
   height: auto;
-  cursor: pointer;
 }
 
 .search-bar {
@@ -100,11 +99,14 @@ main {
   margin: 1rem 2rem;
 }
 
+.loading {
+  margin: 0 1rem;
+}
+
 /* cards */
 
 .card-list {
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin: 0 1rem;
 }
 
 .subreddit {
@@ -119,6 +121,10 @@ main {
   border-radius: 1rem;
   margin-bottom: 1rem;
   padding: 1rem 2rem;
+}
+
+.card p {
+  margin: 0.5rem 0;
 }
 
 .card > .intro {
@@ -136,7 +142,7 @@ main {
 }
 
 .img-container {
-  width: 25rem;
+  width: 30rem;
   margin: 0 auto;
 }
 
@@ -150,15 +156,70 @@ main {
   align-items: center;
   text-decoration: none;
   color: var(--primary-text-color);
-}
-
-.card > .comments:hover {
-  background-color: var(--secondary-bg-color);
+  width: 10rem;
 }
 
 .card > .comments p {
   font-size: .875rem;
   font-weight: bold;
+}
+
+.card > .comments-link:hover {
+  background-color: var(--secondary-bg-color);
+}
+
+/* posts */
+
+.post {
+  margin: 0 1rem;
+}
+
+.post > .comments {
+  list-style: none;
+  padding: 1rem 2rem 2rem;
+  background-color: var(--primary-bg-color);
+  box-shadow: -0.3rem 0.3rem 0.6rem var(--tertiary-bg-color);
+  border-radius: 1rem;
+}
+
+.post .comment {
+  background-color: var(--secondary-bg-color);
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+}
+
+.post .comment p {
+  margin: 0.5rem 0;
+}
+
+.post .comment > .title {
+  font-size: .75rem;
+  font-weight: bold;
+}
+
+.post .comment > .title > span {
+  color: var(--secondary-text-color);
+  font-weight: normal;
+}
+
+.post .replies {
+  list-style: none;
+  padding: 0;
+  margin-left: 1.5rem;
+}
+
+.post .reply {
+  margin-top: 1rem;
+}
+
+.post .reply > .title {
+  font-size: .75rem;
+  font-weight: bold;
+}
+
+.post .reply > .title > span {
+  color: var(--secondary-text-color);
+  font-weight: normal;
 }
 
 /* navbar */
