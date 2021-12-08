@@ -4,10 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectSubreddits, addSubreddit, changeActiveSubreddit } from './navbarSlice.js';
 import { getSubreddits } from '../../app/reddit.js';
 import logo from '../../app/logo.png';
+import openMenu from '../../app/openMenu.png';
 
 export default function Navbar() {
   const subreddits = useSelector(selectSubreddits);
   const dispatch = useDispatch();
+  // create mediaQueryList object with matchMedia 
+  const mediaQuery = window.matchMedia('(max-width: 1279px)');
 
   useEffect(() => getSubreddits().then(data => {
     // run through array and add each element to state
@@ -26,7 +29,16 @@ export default function Navbar() {
         <h2>Subreddits</h2>
         <ul>
           {subreddits.map(subreddit => (
-            <li key={subreddit.id} className='subreddit-link' onClick={() => dispatch(changeActiveSubreddit(subreddit.url))}>
+            <li key={subreddit.id} className='subreddit-link' onClick={() => {
+              dispatch(changeActiveSubreddit(subreddit.url));
+              // check if the media query is true
+              if (mediaQuery.matches) {
+                // set menu button to open
+                document.querySelector('.menu img').src = openMenu;
+                // make navbar invisible
+                document.querySelector('.navbar').style.transform = 'scaleY(0)';
+              }
+            }}>
               <NavLink to={subreddit.url} className={({ isActive }) => isActive ? 'active' : 'inactive'}>
                 <div className='icon-container'>
                   <img src={subreddit.icon || logo} alt={`${subreddit.prefix} icon`} />

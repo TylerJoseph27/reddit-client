@@ -33,13 +33,13 @@ export default function Post() {
           id: comment.id,
           author: comment.author,
           time: getPostDate(comment.created_utc),
-          content: comment.body,
+          body: comment.body,
           replies: comment.replies ? comment.replies.data.children.map(reply => {
             return {
               id: reply.data.id,
               author: reply.data.author,
               time: getPostDate(reply.data.created_utc),
-              content: reply.data.body
+              body: reply.data.body
             };
           }) : ''
         }));
@@ -60,7 +60,7 @@ export default function Post() {
           author={post.author}
           time={post.time}
           title={post.title}
-          description={post.description}
+          body={post.body}
           preview={post.preview}
           type={post.type}
           comments={post.comments}
@@ -71,7 +71,7 @@ export default function Post() {
               <Comment 
                 author={comment.author}
                 time={comment.time}
-                content={comment.content}
+                body={comment.body}
                 replies={comment.replies}
               />
             </li>

@@ -55,10 +55,10 @@ export default function Card(props) {
     <article className='card'>
       <p className='intro'>{`Posted by u/${props.author} ${props.time}`}</p>
       <h2 className='title'>{props.title}</h2>
-      {props.type === 'link' || props.type === 'hosted:video' || typeof props.type === 'object' ? <a href={props.preview} rel='noreferrer' target='_blank'>{props.preview}</a> : null}
-      {props.type === 'self' || (props.type === undefined && props.description.length > 0) ? <ReactMarkdown className='description'>{props.description}</ReactMarkdown> : null}
+      {props.type === 'link' || props.type === 'hosted:video' || typeof props.type === 'object' ? <a href={props.preview} rel='noreferrer' target='_blank' className='link'>{props.preview}</a> : null}
+      {props.type === 'self' || (props.type === undefined && props.body.length > 0) ? <ReactMarkdown className='body'>{props.body}</ReactMarkdown> : null}
       {props.type === 'image' ? <div className='img-container'><img src={props.preview} alt='post preview' /></div> : null}
-      {props.type === 'rich:video' && videoURL.length > 0 ? <iframe src={videoURL} title={props.title} width='640' height='360' allowFullScreen className='video'></iframe> : null}
+      {props.type === 'rich:video' && videoURL.length > 0 ? <div className='video-container'><iframe src={videoURL} title={props.title} allowFullScreen></iframe></div> : null}
       {props.url ? postLink : commentsImg}
     </article>
   );
