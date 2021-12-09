@@ -1,6 +1,6 @@
 # Reddit Client
 
-A React app, which uses the [reddit](https://www.reddit.com/) JSON API, that allows users to view popular subreddit posts along with comments and replies.
+A React app, which uses the reddit JSON API, that allows users to view popular subreddit posts along with comments and replies.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
@@ -14,22 +14,22 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## General Info
 
 This site was made with the [React](https://reactjs.org/) with the intent to be deployed with [Netlify](https://www.netlify.com/).
-It uses the undocumented reddit JSON API to display subreddits, posts on those subreddits, comments on those posts, and some replies to those comments.
+It uses the undocumented [reddit](https://www.reddit.com/) JSON API to display subreddits, posts on those subreddits, comments on those posts, and some replies to those comments.
 The viewer can only view the data and cannot interact with it, there are no plans to change this as that would involve switching to the documented reddit API that uses OAuth.
 
-React Router is used to switch between displaying the subreddit posts and the subreddit comments (with replies).
-The API returns a string in markdown format for the post content so React Markdown is used, but the content is not always formatted correctly due to the API returning incorrectly formatted markdown (possibly due to it using reddit specific markdown).
+[React Router](https://reactrouter.com/) is used to switch between displaying the subreddit posts and the subreddit comments (with replies).
+The API returns a string in markdown format for the post content so [React Markdown](https://remarkjs.github.io/react-markdown/) is used, but the content is not always formatted correctly due to the API returning incorrectly formatted markdown (possibly due to it using reddit specific markdown).
 
 ## Technologies
 
 This project was created with:
 
-* HTML
-* CSS
-* JavaScript
+* [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+* [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * React
 * Redux
-* React Redux
+* [React Redux](https://react-redux.js.org/)
 * Redux Toolkit
 * React Router
 * React Markdown
