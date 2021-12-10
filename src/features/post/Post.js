@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../card/Card.js';
-import Comment from './comment/Comment.js';
+import Comment from '../comment/Comment.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { selectComments, changeComments } from './postSlice.js';
