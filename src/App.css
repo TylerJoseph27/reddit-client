@@ -261,6 +261,7 @@ main {
   top: 5rem;
   right: 0;
   z-index: 3;
+  opacity: 0;
   transform: scaleY(0);
   transform-origin: top center;
   transition: 0.3s;
@@ -387,6 +388,7 @@ footer p {
 
   .navbar {
     position: static;
+    opacity: 1;
     transform: scaleY(1);
   }
   

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { changeActiveSubreddit } from './features/navbar/navbarSlice.js';
 import SearchBar from './features/searchBar/SearchBar.js';
@@ -11,9 +11,11 @@ import Navbar from './features/navbar/Navbar.js';
 import logo from './app/logo.png';
 import openMenu from './app/openMenu.png';
 import closeMenu from './app/closeMenu.png';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
   // create mediaQueryList object with matchMedia 
   const mediaQuery = window.matchMedia('(min-width: 1280px)');
 
@@ -24,11 +26,13 @@ function App() {
       // change open menu button to close menu
       target.src = closeMenu;
       // open drop-down menu
+      document.querySelector('.navbar').style.opacity = '1';
       document.querySelector('.navbar').style.transform = 'scaleY(1)';
     } else if (target.src === closeMenu) {
       // change close menu button to open menu
       target.src = openMenu;
       // close drop-down menu
+      document.querySelector('.navbar').style.opacity = '0';
       document.querySelector('.navbar').style.transform = 'scaleY(0)';
     }
   };
@@ -37,11 +41,13 @@ function App() {
     // check if the media query is true
     if (event.matches) {
       // make navbar visible
+      document.querySelector('.navbar').style.opacity = '1';
       document.querySelector('.navbar').style.transform = 'scaleY(1)';
     } else {
       // set menu button to open
       document.querySelector('.menu img').src = openMenu;
       // make navbar invisible
+      document.querySelector('.navbar').style.opacity = '0';
       document.querySelector('.navbar').style.transform = 'scaleY(0)';
     }
   };
@@ -67,11 +73,13 @@ function App() {
         </div>
       </header>
       <main>
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/r/:subreddit' element={<CardList />} />
-          <Route path='/r/:subreddit/comments/:id/:comment' element={<Post />} />
-        </Routes>
+        <AnimatePresence exitBeforeEnter initial={false}>
+          <Routes location={location} key={location.pathname}>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/r/:subreddit' element={<CardList />} />
+            <Route path='/r/:subreddit/comments/:id/:comment' element={<Post />} />
+          </Routes>
+        </AnimatePresence>
         <Navbar />
       </main>
       <footer>

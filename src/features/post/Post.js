@@ -7,6 +7,7 @@ import { selectComments, changeComments } from './postSlice.js';
 import { selectActivePost, selectPosts } from '../cardList/cardListSlice.js';
 import { getPostComments } from '../../app/reddit.js';
 import { getPostDate } from '../../app/utils.js';
+import { motion } from 'framer-motion';
 
 export default function Post() {
   const [post, setPost] = useState({});
@@ -16,46 +17,64 @@ export default function Post() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => getPostComments(activePost).then(data => {
-    // check for new comments
-    if (data.postId) {
-      // filter array of objects to get correct object
-      const filteredPosts = posts.filter(post => post.id === data.postId);
-      // store post object in state
-      setPost(filteredPosts[0]);
+  // create mediaQueryList object with matchMedia 
+  const mediaQuery = window.matchMedia('(min-width: 1600px)');
 
-      // array to store comments
-      const newComments = [];
-
-      if (data.comments.length > 0) {
-        // run through array and add each comment object to array
-        data.comments.forEach(comment => newComments.push({
-          id: comment.id,
-          author: comment.author,
-          time: getPostDate(comment.created_utc),
-          body: comment.body,
-          replies: comment.replies ? comment.replies.data.children.map(reply => {
-            return {
-              id: reply.data.id,
-              author: reply.data.author,
-              time: getPostDate(reply.data.created_utc),
-              body: reply.data.body
-            };
-          }) : ''
-        }));
+  useEffect(() => {
+    // flag for mounted component
+    let isSubscribed = true;
+    getPostComments(activePost).then(data => {
+      // check for new comments
+      if (data.postId) {
+        // filter array of objects to get correct object
+        const filteredPosts = posts.filter(post => post.id === data.postId);
+        
+        // check for mounted component
+        if (isSubscribed) {
+          // store post object in state
+          setPost(filteredPosts[0]);
+        }
+        
+        // array to store comments
+        const newComments = [];
+  
+        if (data.comments.length > 0) {
+          // run through array and add each comment object to array
+          data.comments.forEach(comment => newComments.push({
+            id: comment.id,
+            author: comment.author,
+            time: getPostDate(comment.created_utc),
+            body: comment.body,
+            replies: comment.replies ? comment.replies.data.children.map(reply => {
+              return {
+                id: reply.data.id,
+                author: reply.data.author,
+                time: getPostDate(reply.data.created_utc),
+                body: reply.data.body
+              };
+            }) : ''
+          }));
+        }
+  
+        // change comments state to newComments array
+        dispatch(changeComments(newComments));
+      } else {
+        // return to home page
+        navigate('/');
       }
-
-      // change comments state to newComments array
-      dispatch(changeComments(newComments));
-    } else {
-      // return to home page
-      navigate('/');
-    }
-  }).catch(error => console.log(error)), [activePost, posts, post, dispatch, navigate]);
+    }).catch(error => console.log(error));
+    // async cleanup
+    return () => isSubscribed = false;
+  }, [activePost, posts, post, dispatch, navigate]);
 
   if (post.id) {
     return (
-      <section className='post'>
+      <motion.div className='post' 
+        initial={{ opacity: 0, translateX: mediaQuery.matches ? -100 : 0, translateY: 100 }} 
+        animate={{ opacity: 1, translateX: 0, translateY: 0 }} 
+        exit={{ opacity: 0, translateX: mediaQuery.matches ? -100 : 0, translateY: 100 }} 
+        transition={{ duration: 0.6 }}
+      >
         <Card 
           author={post.author}
           time={post.time}
@@ -77,7 +96,7 @@ export default function Post() {
             </li>
           ))}
         </ul> : null}
-      </section>
+      </motion.div>
     );
   } else {
     return (

@@ -17,7 +17,7 @@ This site was made with the [React](https://reactjs.org/) with the intent to be 
 It uses the undocumented [reddit](https://www.reddit.com/) JSON API to display subreddits, posts on those subreddits, comments on those posts, and some replies to those comments.
 The viewer can only view the data and cannot interact with it, there are no plans to change this as that would involve switching to the documented reddit API that uses OAuth.
 
-[React Router](https://reactrouter.com/) is used to switch between displaying the subreddit posts and the subreddit comments (with replies).
+[React Router](https://reactrouter.com/) is used to switch between displaying the subreddit posts and the subreddit comments (with replies) while [Framer Motion](https://www.framer.com/docs/) is used to animate transitions between routes.
 The API returns a string in markdown format for the post content so [React Markdown](https://remarkjs.github.io/react-markdown/) is used, but the content is not always formatted correctly due to the API returning incorrectly formatted markdown (possibly due to it using reddit specific markdown).
 
 ## Technologies
@@ -33,6 +33,7 @@ This project was created with:
 * Redux Toolkit
 * React Router
 * React Markdown
+* Framer Motion
 
 ## Available Scripts
 

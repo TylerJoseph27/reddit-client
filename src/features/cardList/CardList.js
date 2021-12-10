@@ -7,6 +7,7 @@ import { selectActiveSubreddit } from '../navbar/navbarSlice.js';
 import { selectSearchTerm } from '../searchBar/searchBarSlice.js';
 import { getSubredditPosts } from '../../app/reddit.js';
 import { getPostDate } from '../../app/utils.js';
+import { motion } from 'framer-motion';
 
 export default function CardList() {
   const posts = useSelector(selectPosts);
@@ -16,6 +17,8 @@ export default function CardList() {
   const navigate = useNavigate();
 
   const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  // create mediaQueryList object with matchMedia 
+  const mediaQuery = window.matchMedia('(min-width: 1600px)');
 
   useEffect(() => getSubredditPosts(activeSubreddit).then(data => {
     // check for new posts
@@ -47,7 +50,12 @@ export default function CardList() {
   if (posts.length > 0) {
     if (filteredPosts.length > 0) {
       return (
-        <section className='card-list'>
+        <motion.div className='card-list' 
+          initial={{ opacity: 0, translateX: mediaQuery.matches ? -100 : 0, translateY: 100 }} 
+          animate={{ opacity: 1, translateX: 0, translateY: 0 }} 
+          exit={{ opacity: 0, translateX: mediaQuery.matches ? -100 : 0, translateY: 100 }} 
+          transition={{ duration: 0.6 }}
+        >
           <ul className='subreddit'>
             {filteredPosts.map(post => (
               <li key={post.id}>
@@ -64,7 +72,7 @@ export default function CardList() {
               </li>
             ))}
           </ul>
-        </section>
+        </motion.div>
       );
     } else {
       return (
