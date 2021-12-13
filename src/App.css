@@ -11,6 +11,16 @@
   font-size: 16px;
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
 /* header */
 
 header {
@@ -39,8 +49,6 @@ header h1 {
 
 .icon-container {
   width: 2rem;
-  margin-left: 0.6rem;
-  margin-right: 0.6rem;
 }
 
 .icon-container img {
@@ -93,8 +101,8 @@ main {
   padding: 1rem 2rem;
 }
 
-.about h2, .loading h2 {
-  margin: 0;
+.about p {
+  margin: 1rem 0;
 }
 
 .about .navbar-prompt {
@@ -271,7 +279,7 @@ nav {
   background-color: var(--primary-bg-color);
   box-shadow: -0.3rem 0.3rem 0.6rem var(--tertiary-bg-color);
   border-radius: 1rem;
-  padding: 0.5rem 1.5rem;
+  padding: 1rem;
 }
 
 nav > h2 {
@@ -280,7 +288,6 @@ nav > h2 {
 
 nav > ul {
   list-style: none;
-  padding: 0;
 }
 
 .subreddit-link > a {
@@ -288,7 +295,7 @@ nav > ul {
   text-decoration: none;
   display: flex;
   align-items: center;
-  padding: 0.3rem;
+  padding: 0.6rem;
 }
 
 .subreddit-link .icon-container {
@@ -328,6 +335,7 @@ footer p {
     font-weight: bold;
     color: var(--primary-accent-color);
     text-transform: uppercase;
+    margin-left: 1rem;
   }
   
   header h1 > span {
@@ -356,8 +364,9 @@ footer p {
     display: initial;
     border: none;
     background-color: var(--primary-bg-color);
+    margin-left: 1rem;
     opacity: 50%;
-    transition: opacity 0.3s, transform 0.2s;
+    transition: opacity 0.2s, transform 0.1s;
     cursor: pointer;
   }
   
@@ -366,7 +375,7 @@ footer p {
   }
   
   .search-bar > button:active {
-    transform: scale(0.75);
+    transform: scale(0.8);
   }
 
   /* main */
@@ -398,11 +407,14 @@ footer p {
   
   nav > h2 {
     display: initial;
-    margin: 0;
+  }
+
+  nav > ul {
+    margin: 1rem 0;
   }
   
   .subreddit-link > a {
-    padding: 0.6rem;
+    padding: 0.8rem;
   }
 
   .subreddit-link .icon-container {

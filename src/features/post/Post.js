@@ -73,7 +73,7 @@ export default function Post() {
         initial={{ opacity: 0, translateX: mediaQuery.matches ? -100 : 0, translateY: 100 }} 
         animate={{ opacity: 1, translateX: 0, translateY: 0 }} 
         exit={{ opacity: 0, translateX: mediaQuery.matches ? -100 : 0, translateY: 100 }} 
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.3 }}
       >
         <Card 
           author={post.author}
