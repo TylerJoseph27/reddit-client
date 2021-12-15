@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { selectSubreddits, addSubreddit, changeActiveSubreddit } from './navbarSlice.js';
+import { selectSubreddits, addSubreddit, removeSubreddits, changeActiveSubreddit } from './navbarSlice.js';
 import { getSubreddits } from '../../app/reddit.js';
 import logo from '../../app/logo.png';
 import openMenu from '../../app/openMenu.png';
@@ -12,22 +12,26 @@ export default function Navbar() {
   // create mediaQueryList object with matchMedia 
   const mediaQuery = window.matchMedia('only screen and (max-width: 1279px)');
 
-  useEffect(() => getSubreddits().then(data => {
-    // run through array and add each element to state
-    data.forEach(subreddit => dispatch(addSubreddit({
-      id: subreddit.id,
-      name: subreddit.display_name,
-      prefix: subreddit.display_name_prefixed,
-      url: subreddit.url.slice(0, -1),
-      icon: subreddit.community_icon.split("?")[0]
-    })));
-  }).catch(error => console.log(error)), [dispatch]);
+  useEffect(() => {
+    getSubreddits().then(data => {
+      // run through array and add each element to state
+      data.forEach(subreddit => dispatch(addSubreddit({
+        id: subreddit.id,
+        name: subreddit.display_name,
+        prefix: subreddit.display_name_prefixed,
+        url: subreddit.url.slice(0, -1),
+        icon: subreddit.community_icon.split("?")[0]
+      })));
+    }).catch(error => console.log(error));
+
+    return () => dispatch(removeSubreddits());
+  }, [dispatch]);
 
   return (
     <section className='navbar'>
       <nav>
         <h2>Subreddits</h2>
-        <ul>
+        {subreddits.length > 0 ? <ul>
           {subreddits.map(subreddit => (
             <li key={subreddit.id} className='subreddit-link' onClick={() => {
               dispatch(changeActiveSubreddit(subreddit.url));
@@ -47,7 +51,10 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
-        </ul>
+        </ul> : 
+        <article>
+          <h3>No subreddits found.</h3>
+        </article>}
       </nav>
     </section>
   );

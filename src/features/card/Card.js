@@ -12,7 +12,7 @@ export default function Card(props) {
   const postLink = (
     <Link to={props.url} className='comments comments-link' onClick={() => dispatch(changeActivePost(props.url))}>
       <div className='icon-container'><img src={comments} alt='comments icon' /></div>
-      <p>{`Comments ${props.comments}`}</p>
+      <p>Comments {props.comments}</p>
     </Link>
   );
 
@@ -20,7 +20,7 @@ export default function Card(props) {
   const commentsImg = (
     <div className='comments'>
       <div className='icon-container'><img src={comments} alt='comments icon' /></div>
-      <p>{`Comments ${props.comments}`}</p>
+      <p>Comments {props.comments}</p>
     </div>
   );
 

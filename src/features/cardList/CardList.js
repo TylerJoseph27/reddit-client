@@ -20,32 +20,34 @@ export default function CardList() {
   // create mediaQueryList object with matchMedia 
   const mediaQuery = window.matchMedia('only screen and (min-width: 1600px)');
 
-  useEffect(() => getSubredditPosts(activeSubreddit).then(data => {
-    // check for new posts
-    if (data.length > 0) {
-      // array to store posts
-      const newPosts = [];
-
-      // run through array and add each post object to array
-      data.forEach(post => newPosts.push({
-        id: post.id,
-        author: post.author,
-        time: getPostDate(post.created_utc),
-        title: post.title,
-        body: post.selftext,
-        preview: post.url,
-        type: post.post_hint || post.gallery_data,
-        comments: post.num_comments,
-        url: post.permalink
-      }));
-
-      // change posts state to newPosts array
-      dispatch(changePosts(newPosts));
-    } else {
-      // return to home page
-      navigate('/');
-    }
-  }).catch(error => console.log(error)), [activeSubreddit, dispatch, navigate]);
+  useEffect(() => {
+    getSubredditPosts(activeSubreddit).then(data => {
+      // check for new posts
+      if (data.length > 0) {
+        // array to store posts
+        const newPosts = [];
+  
+        // run through array and add each post object to array
+        data.forEach(post => newPosts.push({
+          id: post.id,
+          author: post.author,
+          time: getPostDate(post.created_utc),
+          title: post.title,
+          body: post.selftext,
+          preview: post.url,
+          type: post.post_hint || post.gallery_data,
+          comments: post.num_comments,
+          url: post.permalink
+        }));
+  
+        // change posts state to newPosts array
+        dispatch(changePosts(newPosts));
+      } else {
+        // return to home page
+        navigate('/');
+      }
+    }).catch(error => console.log(error));
+  }, [activeSubreddit, dispatch, navigate]);
 
   if (posts.length > 0) {
     if (filteredPosts.length > 0) {
@@ -84,7 +86,7 @@ export default function CardList() {
   } else {
     return (
       <section className='loading'>
-        <h2>Loading...</h2>
+        <h2>No posts found in {activeSubreddit.slice(1)}.</h2>
       </section>
     );
   }

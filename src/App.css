@@ -190,6 +190,7 @@ main {
 .card > .comments p {
   font-size: .875rem;
   font-weight: bold;
+  margin-left: 0.5rem;
 }
 
 .card > .comments-link:hover {
@@ -276,7 +277,7 @@ main {
 .navbar {
   margin-right: 1rem;
   position: fixed;
-  top: 5rem;
+  top: 6rem;
   right: 0;
   z-index: 3;
   opacity: 0;
@@ -324,6 +325,10 @@ nav > ul {
   color: var(--primary-accent-color);
   background-color: var(--secondary-accent-color);
   border-left: 0.5rem solid var(--primary-accent-color);
+}
+
+nav h3 {
+  margin-top: 0.5rem;
 }
 
 /* footer */
