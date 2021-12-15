@@ -29,7 +29,7 @@ header {
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 4rem;
+  height: 5rem;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   align-items: center;
@@ -65,7 +65,7 @@ header h1 {
 .search-bar > input {
   background-color: var(--secondary-bg-color);
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   width: 80%;
   border-radius: 0.5rem;
 }
@@ -83,11 +83,21 @@ input[type="search"]::-webkit-search-cancel-button {
   cursor: pointer;
 }
 
+.menu-bg {
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 50%;
+}
+
+.menu-bg:hover {
+  background-color: var(--secondary-bg-color);
+}
+
 /* main */
 
 main {
-  margin: 5rem auto;
-  min-height: calc(100vh - 12.5rem);
+  margin: 6rem auto;
+  min-height: calc(100vh - 13.5rem);
 }
 
 .about {
@@ -350,7 +360,7 @@ footer p {
 @media only screen and (min-width: 1280px) {
   /* header */
 
-  .menu {
+  .menu-bg {
     display: none;
   }
 

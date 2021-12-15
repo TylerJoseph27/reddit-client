@@ -18,7 +18,7 @@ export default function Post() {
   const navigate = useNavigate();
 
   // create mediaQueryList object with matchMedia 
-  const mediaQuery = window.matchMedia('(min-width: 1600px)');
+  const mediaQuery = window.matchMedia('only screen and (min-width: 1600px)');
 
   useEffect(() => {
     // flag for mounted component

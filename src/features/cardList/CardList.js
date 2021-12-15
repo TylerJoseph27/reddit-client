@@ -18,7 +18,7 @@ export default function CardList() {
 
   const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(searchTerm.toLowerCase()));
   // create mediaQueryList object with matchMedia 
-  const mediaQuery = window.matchMedia('(min-width: 1600px)');
+  const mediaQuery = window.matchMedia('only screen and (min-width: 1600px)');
 
   useEffect(() => getSubredditPosts(activeSubreddit).then(data => {
     // check for new posts

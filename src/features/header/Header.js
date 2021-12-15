@@ -10,7 +10,7 @@ import closeMenu from '../../app/closeMenu.png';
 export default function Header() {
   const dispatch = useDispatch();
   // create mediaQueryList object with matchMedia 
-  const mediaQuery = window.matchMedia('(min-width: 1280px)');
+  const mediaQuery = window.matchMedia('only screen and (min-width: 1280px)');
 
   // toggle menu button
   const toggleMenu = ({ target }) => {
@@ -60,8 +60,10 @@ export default function Header() {
         <h1>Reddit<span>Minimal</span></h1>
       </Link>
       <SearchBar />
-      <div className='icon-container menu'>
-        <img src={openMenu} alt='menu icon' onClick={toggleMenu} />
+      <div className='menu-bg'>
+        <div className='icon-container menu'>
+          <img src={openMenu} alt='menu icon' onClick={toggleMenu} />
+        </div>
       </div>
     </header>
   );

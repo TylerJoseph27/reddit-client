@@ -10,7 +10,7 @@ export default function Navbar() {
   const subreddits = useSelector(selectSubreddits);
   const dispatch = useDispatch();
   // create mediaQueryList object with matchMedia 
-  const mediaQuery = window.matchMedia('(max-width: 1279px)');
+  const mediaQuery = window.matchMedia('only screen and (max-width: 1279px)');
 
   useEffect(() => getSubreddits().then(data => {
     // run through array and add each element to state
