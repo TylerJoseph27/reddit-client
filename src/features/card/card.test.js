@@ -6,41 +6,16 @@ import Card from './Card.js';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-// mock props for render
-const posts = [
-  {
-    id: '1',
-    author: 'User1',
-    time: '5 days ago',
-    title: 'Example post 1',
-    body: 'example body text',
-    preview: '',
-    type: 'self',
-    comments: '4',
-    url: '/r/Home/comments/1/example_post_1'
-  },
-  {
-    id: '2',
-    author: 'user2',
-    time: '3 hours ago',
-    title: 'Example post 2',
-    body: '',
-    preview: '',
-    type: '',
-    comments: '0',
-    url: '/r/Home/comments/2/example_post_2'
-  }
-];
-
+// store component for render
 const cards = (
   <Provider store={store}>
     <BrowserRouter>
       <ul>
-        {posts.map(post => (
+        {propPostsMock.map(post => (
           <li key={post.id}>
             <Card 
               author={post.author}
-              time={post.author}
+              time={post.time}
               title={post.title}
               body={post.body}
               preview={post.preview}
@@ -59,5 +34,27 @@ describe('Card', () => {
   it('Should render without errors', () => {
     // render component
     render(cards);
+
+    // grab article, heading, link, and img elements
+    const articles = screen.getAllByRole('article');
+    const headings = screen.getAllByRole('heading');
+    const links = screen.getAllByRole('link');
+    const img = screen.getByAltText('post preview');
+
+    // use jest-dom matcher in assertions
+    articles.forEach(article => expect(article).toBeVisible());
+    headings.forEach(heading => expect(heading).toBeVisible());
+    links.forEach(link => expect(link).toBeVisible());
+    expect(img).toBeVisible();
+  });
+
+  it('Should display link to post with comments', () => {
+    // render component
+    render(cards);
+
+    // grab link elements
+    const links = screen.getAllByRole('link');
+    // simulate user clicking link
+    userEvent.click(links[links.length - 1]);
   });
 });

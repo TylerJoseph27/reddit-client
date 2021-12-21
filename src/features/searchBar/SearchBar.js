@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectActiveSubreddit } from '../navbar/navbarSlice.js';
 import { changeSearchTerm } from './searchBarSlice.js';
-import search from '../../app/search.png';
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,7 +15,7 @@ export default function SearchBar() {
     }}>
       <input type='search' value={searchTerm} onChange={({ target }) => setSearchTerm(target.value)} placeholder={`Search ${activeSubreddit.slice(1)}`} />
       <button type='submit' className='icon-container'>
-        <img src={search} alt='search icon' />
+        <img src={'/images/search.png'} alt='search icon' />
       </button>
     </form>
   );

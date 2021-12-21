@@ -4,20 +4,25 @@ import { createSlice } from '@reduxjs/toolkit';
 export const postSlice = createSlice({
   name: 'post',
   initialState: {
+    currentPost: {},
     comments: []
   },
   reducers: {
+    changeCurrentPost: (state, action) => {
+      state.currentPost = action.payload;
+    },
     changeComments: (state, action) => {
       state.comments = action.payload;
     }
   }
 });
 
-// export selector
+// export selectors
+export const selectCurrentPost = state => state.post.currentPost;
 export const selectComments = state => state.post.comments;
 
-// export action creator
-export const { changeComments } = postSlice.actions;
+// export action creators
+export const { changeCurrentPost, changeComments } = postSlice.actions;
 
 // export reducer
 export default postSlice.reducer;

@@ -28,22 +28,6 @@ describe('Header', () => {
     expect(screen.getByAltText('menu icon')).toBeVisible();
   });
 
-  // it('Should toggle menu button', () => {
-  //   // render component
-  //   render(header);
-    
-  //   // grab img elements
-  //   const menu = screen.getByAltText('menu icon');
-
-  //   // simulate user clicking img
-  //   userEvent.click(menu);
-  //   expect(menu.src).toBe('http://localhost/closeMenu.png');
-    
-  //   // simulate user clicking img
-  //   userEvent.click(menu);
-  //   expect(menu.src).toBe('http://localhost/openMenu.png');
-  // });
-
   it('Should navigate to home page', () => {
     // render component
     render(header);

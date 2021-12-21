@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown';
 
 export default function Comment(props) {
   return (
-    <article className='comment'>
+    <>
       <div className='content'>
         <p className='title'>{props.author} <span>· {props.time}</span></p>
         <ReactMarkdown className='body'>{props.body}</ReactMarkdown>
@@ -16,6 +16,6 @@ export default function Comment(props) {
           </li>
         ))}
       </ul> : null}
-    </article>
+    </>
   );
 }

@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { changeActiveSubreddit } from '../navbar/navbarSlice.js';
 import SearchBar from '../searchBar/SearchBar.js';
-import logo from '../../app/logo.png';
-import openMenu from '../../app/openMenu.png';
-import closeMenu from '../../app/closeMenu.png';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -15,15 +12,15 @@ export default function Header() {
   // toggle menu button
   const toggleMenu = ({ target }) => {
     // check if menu button is open
-    if (target.src === openMenu) {
+    if (target.src === (window.location.origin + '/images/openMenu.png')) {
       // change open menu button to close menu
-      target.src = closeMenu;
+      target.src = '/images/closeMenu.png';
       // open drop-down menu
       document.querySelector('.navbar').style.opacity = '1';
       document.querySelector('.navbar').style.transform = 'scaleY(1)';
-    } else if (target.src === closeMenu) {
+    } else if (target.src === (window.location.origin + '/images/closeMenu.png')) {
       // change close menu button to open menu
-      target.src = openMenu;
+      target.src = '/images/openMenu.png';
       // close drop-down menu
       document.querySelector('.navbar').style.opacity = '0';
       document.querySelector('.navbar').style.transform = 'scaleY(0)';
@@ -38,7 +35,7 @@ export default function Header() {
       document.querySelector('.navbar').style.transform = 'scaleY(1)';
     } else {
       // set menu button to open
-      document.querySelector('.menu img').src = openMenu;
+      document.querySelector('.menu img').src = '/images/openMenu.png';
       // make navbar invisible
       document.querySelector('.navbar').style.opacity = '0';
       document.querySelector('.navbar').style.transform = 'scaleY(0)';
@@ -55,14 +52,14 @@ export default function Header() {
     <header>
       <Link to='/' onClick={() => dispatch(changeActiveSubreddit(''))}>
         <div className='icon-container'>
-          <img src={logo} alt='reddit logo' />
+          <img src={'/images/logo.png'} alt='reddit logo' />
         </div>
         <h1>Reddit<span>Minimal</span></h1>
       </Link>
       <SearchBar />
       <div className='menu-bg'>
         <div className='icon-container menu'>
-          <img src={openMenu} alt='menu icon' onClick={toggleMenu} />
+          <img src={'/images/openMenu.png'} alt='menu icon' onClick={toggleMenu} />
         </div>
       </div>
     </header>

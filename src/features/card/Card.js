@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { changeActivePost } from '../cardList/cardListSlice';
 import { Link } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
-import comments from '../../app/comments.png';
 
 export default function Card(props) {
   const dispatch = useDispatch();
@@ -11,7 +10,7 @@ export default function Card(props) {
   // variable to hold react-dom Link
   const postLink = (
     <Link to={props.url} className='comments comments-link' onClick={() => dispatch(changeActivePost(props.url))}>
-      <div className='icon-container'><img src={comments} alt='comments icon' /></div>
+      <div className='icon-container'><img src={'/images/comments.png'} alt='comments icon' /></div>
       <p>Comments {props.comments}</p>
     </Link>
   );
@@ -19,7 +18,7 @@ export default function Card(props) {
   // variable to hold div
   const commentsImg = (
     <div className='comments'>
-      <div className='icon-container'><img src={comments} alt='comments icon' /></div>
+      <div className='icon-container'><img src={'/images/comments.png'} alt='comments icon' /></div>
       <p>Comments {props.comments}</p>
     </div>
   );

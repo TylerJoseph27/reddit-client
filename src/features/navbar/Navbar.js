@@ -3,8 +3,6 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSubreddits, addSubreddit, removeSubreddits, changeActiveSubreddit } from './navbarSlice.js';
 import { getSubreddits } from '../../app/reddit.js';
-import logo from '../../app/logo.png';
-import openMenu from '../../app/openMenu.png';
 
 export default function Navbar() {
   const subreddits = useSelector(selectSubreddits);
@@ -38,14 +36,14 @@ export default function Navbar() {
               // check if the media query is true
               if (mediaQuery.matches) {
                 // set menu button to open
-                document.querySelector('.menu img').src = openMenu;
+                document.querySelector('.menu img').src = '/images/openMenu.png';
                 // make navbar invisible
                 document.querySelector('.navbar').style.transform = 'scaleY(0)';
               }
             }}>
               <NavLink to={subreddit.url} className={({ isActive }) => isActive ? 'active' : 'inactive'}>
                 <div className='icon-container'>
-                  <img src={subreddit.icon || logo} alt={`${subreddit.prefix} icon`} />
+                  <img src={subreddit.icon || '/images/logo.png'} alt={`${subreddit.prefix} icon`} />
                 </div>
                 <p>{subreddit.name}</p>
               </NavLink>
