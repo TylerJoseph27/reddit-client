@@ -32,16 +32,14 @@ describe('App', () => {
     ));
 
     // mock window.matchMedia
-    window.matchMedia = window.matchMedia || function(query) {
-      return {
-          matches: true,
-          media: query,
-          onChange: null,
-          addEventListener: jest.fn(),
-          removeEventListener: jest.fn(),
-          dispatchEvent: jest.fn()
-      };
-    };
+    window.matchMedia = query => ({
+      matches: true,
+      media: query,
+      onChange: null,
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn()
+    });
   });
 
   it('Should render without errors', async () => {
@@ -90,15 +88,30 @@ describe('App', () => {
     // rerender component for route change
     await waitFor(() => render(app));
 
-    // grab input element
-    const searchBox = within(screen.getByRole('banner')).getByRole('searchbox');
+    // grab header and input elements
+    const header = screen.getByRole('banner');
+    const searchBox = within(header).getByRole('searchbox');
+    let lists = within(screen.getByRole('main')).getAllByRole('list');
+    // use jest-dom matcher in assertions
+    expect(lists.length).toBe(2);
+    expect(lists[0].childElementCount).toBe(7);
 
     // simulate user typing in input element
     userEvent.type(searchBox, 'example search term');
     // simulate user clicking button
-    userEvent.click(within(screen.getByRole('banner')).getByRole('button'));
+    userEvent.click(within(header).getByRole('button'));
+
+    lists = within(screen.getByRole('main')).getAllByRole('list');
+    // use jest-dom matcher in assertion
+    expect(lists.length).toBe(1);
+    
     // simulate user retyping in input element
     userEvent.type(searchBox, '{selectall}{backspace}1{enter}');
+
+    lists = within(screen.getByRole('main')).getAllByRole('list');
+    // use jest-dom matcher in assertions
+    expect(lists.length).toBe(2);
+    expect(lists[0].childElementCount).toBe(1);
   });
 
   it('Should display post on user clicking card in cardList', async () => {
@@ -114,18 +127,10 @@ describe('App', () => {
     // rerender component for route change
     await waitFor(() => render(app));
 
-    screen.debug();
+    const article = within(screen.getByRole('main')).getByRole('article');
+
+    // use jest-dom matcher in assertion
+    expect(article).toBeVisible();
+    expect(article.nextElementSibling).toBeVisible();
   });
-
-  // it('Should change activeSubreddit state to clicked subreddit', async () => {
-  //   // render component
-  //   await waitFor(() => render(app));
-
-  //   screen.debug()
-
-  //   // grab list item elements
-  //   const listItems = within(screen.getByRole('navigation')).getAllByRole('listitem');
-  //   // simulate user clicking list items
-  //   //listItems.forEach(item => userEvent.click(item));
-  // });
 });

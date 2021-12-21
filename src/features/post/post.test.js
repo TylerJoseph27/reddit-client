@@ -23,8 +23,8 @@ describe('Post', () => {
     // mock async function
     getPostComments.mockImplementation(async () => (
       {
-        postId: 'post1',
-        comments: apiCommentsMock
+        postId: '',
+        comments: []
       }
     ));
   });
@@ -32,6 +32,7 @@ describe('Post', () => {
   it('Should render without errors', async () => {
     // render component
     await waitFor(() => render(post));
+
     // use jest-dom matcher in assertion
     expect(getPostComments).toHaveBeenCalled();
     expect(screen.getByRole('heading')).toBeVisible();

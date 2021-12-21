@@ -23,13 +23,11 @@ describe('Comment', () => {
     // render component
     render(comments);
 
-    // grab article, list, and list item elements
-    const articles = screen.getAllByRole('article');
+    // grab list and list item elements
     const lists = screen.getAllByRole('list');
     const listItems = screen.getAllByRole('listitem');
 
     // use jest-dom matcher in assertions
-    articles.forEach(article => expect(article).toBeVisible());
     lists.forEach(list => expect(list).toBeVisible());
     listItems.forEach(item => expect(item).toBeVisible());
   });

@@ -5,16 +5,14 @@
 import '@testing-library/jest-dom/extend-expect';
 
 // mock window.matchMedia
-window.matchMedia = window.matchMedia || function(query) {
-  return {
-      matches: false,
-      media: query,
-      onChange: null,
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn()
-  };
-};
+window.matchMedia = query => ({
+  matches: false,
+  media: query,
+  onChange: null,
+  addEventListener: jest.fn(),
+  removeEventListener: jest.fn(),
+  dispatchEvent: jest.fn()
+});
 
 // mock component props and api return values
 const subredditsMock = [
