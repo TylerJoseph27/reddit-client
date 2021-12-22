@@ -291,6 +291,8 @@ nav {
   box-shadow: -0.3rem 0.3rem 0.6rem var(--tertiary-bg-color);
   border-radius: 1rem;
   padding: 1rem;
+  max-height: calc(100vh - 13.5rem);
+  overflow-y: auto;
 }
 
 nav > h2 {
@@ -418,6 +420,7 @@ footer p {
   
   nav {
     padding: 1rem 2rem;
+    max-height: none;
   }
   
   nav > h2 {
